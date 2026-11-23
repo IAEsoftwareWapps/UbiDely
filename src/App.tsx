@@ -56,6 +56,7 @@ import {
   PushPreferences,
   PushStatusSummary,
   inspectPushStatus,
+  registerPushServiceWorker,
   subscribeUserToPush,
   triggerStatusPushAlert,
   unsubscribeUserFromPush,
@@ -262,6 +263,7 @@ export default function App() {
   };
 
   useEffect(() => {
+    void registerPushServiceWorker().catch(() => undefined);
     void inspectPushStatus().then(setPushStatus);
     void fetchBootstrapStatus()
       .then(setBootstrapStatus)

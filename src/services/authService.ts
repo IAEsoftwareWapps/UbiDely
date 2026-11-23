@@ -32,7 +32,16 @@ function authHeaders(): Record<string, string> {
 }
 
 async function parseJsonOrThrow<T>(res: Response): Promise<T> {
-  const data = (await res.json().catch(() => ({}))) as T & { error?: string };
+  const contentType = res.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    throw new Error(
+      'Servicio de autenticación no disponible en alojamiento estático (requiere servidor Node activo).'
+    );
+  }
+  const data = (await res.json().catch(() => null)) as (T & { error?: string }) | null;
+  if (!data) {
+    throw new Error('Respuesta inválida del servidor.');
+  }
   if (!res.ok) {
     throw new Error(data.error || 'Error de comunicación con el servidor.');
   }

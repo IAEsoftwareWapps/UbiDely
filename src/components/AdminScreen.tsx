@@ -14,6 +14,7 @@ import {
   XCircle,
   LogOut,
   ShieldCheck,
+  Star,
 } from 'lucide-react';
 import {
   AdminRole,
@@ -24,8 +25,10 @@ import {
   DeliveryCategory,
   DeliveryProduct,
   DriverProfile,
+  DriverRatingRecord,
   ExchangeRates,
   FinancialEntry,
+  INITIAL_DRIVER_RATINGS,
   PartnerRequest,
   RestaurantMerchant,
   formatDualPrice,
@@ -33,9 +36,10 @@ import {
 import { MEDIA_ASSETS } from '../assets/mediaAssets';
 import { ImageWithFallback } from './ImageWithFallback';
 import { FinancialDashboard } from './FinancialDashboard';
+import { DriverRatingsSection } from './DriverRatingsSection';
 import { AuthGatePanel } from './AuthGatePanel';
 
-type AdminSection = 'requests' | 'drivers' | 'merchants' | 'users' | 'finance';
+type AdminSection = 'requests' | 'drivers' | 'ratings' | 'merchants' | 'users' | 'finance';
 
 interface AdminScreenProps {
   currentUser: AuthUser | null;
@@ -68,6 +72,7 @@ interface AdminScreenProps {
   onDeleteAdminUser: (id: string) => Promise<void>;
   financialEntries: FinancialEntry[];
   onAddFinancialEntry: (entry: Omit<FinancialEntry, 'id' | 'dateLabel'>) => void;
+  driverRatings?: DriverRatingRecord[];
 }
 
 const CATALOG_IMAGE_PRESETS = [
@@ -103,6 +108,7 @@ export function AdminScreen({
   onDeleteAdminUser,
   financialEntries,
   onAddFinancialEntry,
+  driverRatings = INITIAL_DRIVER_RATINGS,
 }: AdminScreenProps) {
   const isAuthorizedAdmin = Boolean(
     currentUser &&
@@ -118,11 +124,11 @@ export function AdminScreen({
     if (!currentUser || !isAuthorizedAdmin) return [];
     switch (currentUser.role) {
       case 'Propietario':
-        return ['requests', 'drivers', 'merchants', 'users', 'finance'];
+        return ['requests', 'drivers', 'ratings', 'merchants', 'users', 'finance'];
       case 'Super Admin':
-        return ['drivers', 'merchants', 'users', 'finance'];
+        return ['drivers', 'ratings', 'merchants', 'users', 'finance'];
       case 'Operaciones':
-        return ['drivers', 'merchants'];
+        return ['drivers', 'ratings', 'merchants'];
       case 'Finanzas':
         return ['finance'];
       default:
@@ -309,6 +315,7 @@ export function AdminScreen({
       icon: UserCheck,
     },
     { id: 'drivers', label: 'Conductores', icon: Car },
+    { id: 'ratings', label: 'Calificaciones', icon: Star },
     { id: 'merchants', label: 'Restaurantes y Menús', icon: Store },
     { id: 'users', label: 'Usuarios Admin', icon: Users },
     { id: 'finance', label: 'Ingresos y Gastos', icon: Wallet },
@@ -655,6 +662,11 @@ export function AdminScreen({
             </div>
           </div>
         </div>
+      )}
+
+      {/* SECCIÓN 1B: CALIFICACIONES DE CONDUCTORES */}
+      {section === 'ratings' && allowedSections.includes('ratings') && (
+        <DriverRatingsSection drivers={drivers} ratings={driverRatings} />
       )}
 
       {/* SECCIÓN 2: RESTAURANTES Y MENÚS */}

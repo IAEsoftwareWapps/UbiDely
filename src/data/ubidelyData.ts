@@ -950,3 +950,226 @@ export const INITIAL_SERVICE_HISTORY: ServiceHistoryEntry[] = [
   },
 ];
 
+export interface DriverRatingRecord {
+  id: string;
+  driverId: string;
+  driverName: string;
+  serviceId: string;
+  serviceType: 'ride' | 'delivery';
+  stars: 1 | 2 | 3 | 4 | 5;
+  comment: string;
+  passengerName: string;
+  dateIso: string;
+}
+
+export function getRelativeIsoDate(daysAgo: number): string {
+  const d = new Date();
+  d.setDate(d.getDate() - daysAgo);
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+export const INITIAL_DRIVER_RATINGS: DriverRatingRecord[] = [
+  {
+    id: 'rat-1',
+    driverId: 'drv-1',
+    driverName: 'Carlos Mendoza',
+    serviceId: 'UD-4920',
+    serviceType: 'ride',
+    stars: 5,
+    comment: 'Excelente puntualidad, vehículo impecable y conducción muy segura.',
+    passengerName: 'Mariana G.',
+    dateIso: getRelativeIsoDate(0),
+  },
+  {
+    id: 'rat-2',
+    driverId: 'drv-3',
+    driverName: 'Andrea Rojas',
+    serviceId: 'UD-4912',
+    serviceType: 'ride',
+    stars: 5,
+    comment: 'Ruta interurbana muy cómoda, aire acondicionado perfecto y trato cordial.',
+    passengerName: 'Roberto P.',
+    dateIso: getRelativeIsoDate(0),
+  },
+  {
+    id: 'rat-3',
+    driverId: 'drv-2',
+    driverName: 'Luis Herrera',
+    serviceId: 'DEL-8410',
+    serviceType: 'delivery',
+    stars: 5,
+    comment: 'Pedido de Arepera El Fogón entregado caliente antes del tiempo estimado.',
+    passengerName: 'Valentina R.',
+    dateIso: getRelativeIsoDate(1),
+  },
+  {
+    id: 'rat-4',
+    driverId: 'drv-1',
+    driverName: 'Carlos Mendoza',
+    serviceId: 'UD-4889',
+    serviceType: 'ride',
+    stars: 4,
+    comment: 'Buen servicio y comunicación al llegar al punto de recogida.',
+    passengerName: 'Andrés V.',
+    dateIso: getRelativeIsoDate(2),
+  },
+  {
+    id: 'rat-5',
+    driverId: 'drv-2',
+    driverName: 'Luis Herrera',
+    serviceId: 'DEL-8395',
+    serviceType: 'delivery',
+    stars: 4,
+    comment: 'Entrega cuidadosa y verificación rápida con código.',
+    passengerName: 'Sofía M.',
+    dateIso: getRelativeIsoDate(2),
+  },
+  {
+    id: 'rat-6',
+    driverId: 'drv-3',
+    driverName: 'Andrea Rojas',
+    serviceId: 'UD-4765',
+    serviceType: 'ride',
+    stars: 5,
+    comment: 'Atención ejecutiva de primer nivel en traslado hacia Altos de la Colina.',
+    passengerName: 'Diego L.',
+    dateIso: getRelativeIsoDate(3),
+  },
+  {
+    id: 'rat-7',
+    driverId: 'drv-2',
+    driverName: 'Luis Herrera',
+    serviceId: 'DEL-8291',
+    serviceType: 'delivery',
+    stars: 5,
+    comment: 'Muy amable, llegó con la bolsa térmica sellada intacta.',
+    passengerName: 'Camila S.',
+    dateIso: getRelativeIsoDate(4),
+  },
+  {
+    id: 'rat-8',
+    driverId: 'drv-1',
+    driverName: 'Carlos Mendoza',
+    serviceId: 'UD-4710',
+    serviceType: 'ride',
+    stars: 5,
+    comment: 'Conoce muy bien las vías alternas para evitar tráfico.',
+    passengerName: 'José F.',
+    dateIso: getRelativeIsoDate(5),
+  },
+  {
+    id: 'rat-9',
+    driverId: 'drv-2',
+    driverName: 'Luis Herrera',
+    serviceId: 'DEL-8114',
+    serviceType: 'delivery',
+    stars: 3,
+    comment: 'Hubo un pequeño retraso por lluvia, aunque avisó por mensaje.',
+    passengerName: 'Elena C.',
+    dateIso: getRelativeIsoDate(6),
+  },
+  {
+    id: 'rat-10',
+    driverId: 'drv-3',
+    driverName: 'Andrea Rojas',
+    serviceId: 'UD-4650',
+    serviceType: 'ride',
+    stars: 5,
+    comment: 'Puntualidad exacta en recogida corporativa.',
+    passengerName: 'Héctor N.',
+    dateIso: getRelativeIsoDate(8),
+  },
+  {
+    id: 'rat-11',
+    driverId: 'drv-1',
+    driverName: 'Carlos Mendoza',
+    serviceId: 'UD-4602',
+    serviceType: 'ride',
+    stars: 4,
+    comment: 'Traslado fluido y tarifa transparente.',
+    passengerName: 'Paola D.',
+    dateIso: getRelativeIsoDate(10),
+  },
+  {
+    id: 'rat-12',
+    driverId: 'drv-2',
+    driverName: 'Luis Herrera',
+    serviceId: 'DEL-8025',
+    serviceType: 'delivery',
+    stars: 5,
+    comment: 'Súper rápido en hora pico.',
+    passengerName: 'Javier T.',
+    dateIso: getRelativeIsoDate(12),
+  },
+  {
+    id: 'rat-13',
+    driverId: 'drv-3',
+    driverName: 'Andrea Rojas',
+    serviceId: 'UD-4550',
+    serviceType: 'ride',
+    stars: 5,
+    comment: 'Camioneta muy limpia y excelente atención.',
+    passengerName: 'Lucía B.',
+    dateIso: getRelativeIsoDate(14),
+  },
+  {
+    id: 'rat-14',
+    driverId: 'drv-1',
+    driverName: 'Carlos Mendoza',
+    serviceId: 'UD-4490',
+    serviceType: 'ride',
+    stars: 3,
+    comment: 'Esperé unos minutos en la entrada equivocada, luego todo bien.',
+    passengerName: 'Fernando K.',
+    dateIso: getRelativeIsoDate(17),
+  },
+  {
+    id: 'rat-15',
+    driverId: 'drv-2',
+    driverName: 'Luis Herrera',
+    serviceId: 'DEL-7960',
+    serviceType: 'delivery',
+    stars: 2,
+    comment: 'La bebida llegó algo agitada al subir al edificio.',
+    passengerName: 'Mónica A.',
+    dateIso: getRelativeIsoDate(21),
+  },
+  {
+    id: 'rat-16',
+    driverId: 'drv-3',
+    driverName: 'Andrea Rojas',
+    serviceId: 'UD-4410',
+    serviceType: 'ride',
+    stars: 5,
+    comment: 'Siempre confiable para traslados ejecutivos.',
+    passengerName: 'Gabriel O.',
+    dateIso: getRelativeIsoDate(25),
+  },
+  {
+    id: 'rat-17',
+    driverId: 'drv-1',
+    driverName: 'Carlos Mendoza',
+    serviceId: 'UD-4320',
+    serviceType: 'ride',
+    stars: 5,
+    comment: 'Muy atento con el equipaje y ruta directa.',
+    passengerName: 'Daniela H.',
+    dateIso: getRelativeIsoDate(29),
+  },
+  {
+    id: 'rat-18',
+    driverId: 'drv-2',
+    driverName: 'Luis Herrera',
+    serviceId: 'DEL-7840',
+    serviceType: 'delivery',
+    stars: 5,
+    comment: 'Excelente disposición y entrega en puerta.',
+    passengerName: 'Ricardo Z.',
+    dateIso: getRelativeIsoDate(34),
+  },
+];
+
+

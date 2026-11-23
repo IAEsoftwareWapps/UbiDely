@@ -3,9 +3,12 @@
   "name": "UbiDely — Movilidad y Delivery",
   "short_name": "UbiDely",
   "description": "Plataforma de movilidad urbana, delivery multi-vertical, rastreo GPS y notificaciones en segundo plano.",
+  "lang": "es",
+  "dir": "ltr",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "theme_color": "#111413",
   "background_color": "#111413",
   "icons": [
@@ -26,6 +29,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ]
 }
