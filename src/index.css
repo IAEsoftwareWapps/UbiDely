@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  --surface-base: #111413;
+  --surface-card: #191D1C;
+  --surface-elevated: #202624;
+  --border-subtle: #24302C;
+  --border-focus: #354A44;
+  --text-primary: #E1E3E1;
+  --text-secondary: #A0ABA6;
+  --text-muted: #6C7A75;
+  --primary-action: #006A60;
+  --primary-action-hover: #004D40;
+  --accent-mint: #7EF8E6;
+  --accent-mint-dim: rgba(126, 248, 230, 0.12);
+  --rate-tag-bg: #142521;
+  --currency-usd: #2ECC71;
+  --currency-ves: #3B82F6;
+  --currency-eur: #F59E0B;
+  --currency-cop: #EC4899;
+  --pago-movil-purple: #8B5CF6;
+  --status-error: #FF5449;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: 'Roboto Flex', system-ui, -apple-system, sans-serif;
+    background-color: var(--surface-base);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  button,
+  a,
+  input,
+  select {
+    font-family: inherit;
+  }
+}
+
+.font-mono-tabular {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.tier-3-glass {
+  background: rgba(25, 29, 28, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.45), 0 0 12px 0 rgba(0, 106, 96, 0.15);
+}
+
+@keyframes radar-ping {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.75;
+  }
+  75%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.animate-radar-ping {
+  animation: radar-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-radar-ping {
+    animation: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Subtle dark scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111413;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #24302C;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #354A44;
+}
